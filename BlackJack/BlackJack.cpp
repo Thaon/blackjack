@@ -321,7 +321,8 @@ void main()
 		times++;
 	}
 	*/
-	std::unique_ptr<Game> blackJack(new Game());
+	//std::unique_ptr<Game> blackJack(new Game());
+	std::unique_ptr<Game> blackJack = std::make_unique<Game>();
 	blackJack->GameSetup();
 	Pause();
 }
