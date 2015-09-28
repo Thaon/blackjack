@@ -14,11 +14,11 @@ private:
 public:
 	int GetRandomNumber();
 	Deck();
-	Card DrawCard(Deck deck);
+	Card DrawCard(std::shared_ptr<Deck> deck);
 
 	//getters
-	CardVector cards();
-	CardVector::size_type size();
+	CardVector Cards();
+	CardVector::size_type Size();
 
 	//again, no setters for now
 };

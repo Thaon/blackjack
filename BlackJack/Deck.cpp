@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Deck.h"
 
 CardVector m_cards;
@@ -70,14 +72,14 @@ Deck::Deck() : m_cards(51)
 	m_cards[51] = Card("King of diamonds", 10);
 }
 
-Card Deck::DrawCard(Deck deck)
+Card Deck::DrawCard(std::shared_ptr<Deck> deck)//does not yet remove the drawn card, fix this later on!!!
 {
 	int CardNumber = GetRandomNumber();
-	return deck.cards()[CardNumber];
+	return deck->Cards()[CardNumber];
 }
 
 //getters
-CardVector cards() { return m_cards; }
-CardVector::size_type size() { return m_cards.size(); }
+CardVector Cards() { return m_cards; }
+CardVector::size_type Size() { return m_cards.size(); }
 
 //again, no setters for now

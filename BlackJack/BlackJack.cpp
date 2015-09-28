@@ -1,11 +1,6 @@
 #include "stdafx.h"
-#include <iostream>
-#include <string>
-#include <vector>
-#include <random>
-#include <memory>
 
-#include "Player.h"
+#include "Game.h"
 
 
 static void Pause()
@@ -39,6 +34,6 @@ void main()
 	*/
 	//std::unique_ptr<Game> blackJack(new Game());
 	std::unique_ptr<Game> blackJack = std::make_unique<Game>();
-	blackJack->GameSetup();
+	blackJack->Run();
 	Pause();
 }

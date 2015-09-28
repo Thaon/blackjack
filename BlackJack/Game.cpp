@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Game.h"
 
 typedef std::vector<Player> PlayersVector;
@@ -11,6 +13,7 @@ Game::Game() :
 
 void Game::GameSetup()
 {
+	std::shared_ptr<Deck> m_deck = std::make_unique<Deck>();
 	int numberOfPlayers = AskForPlayersNumber();
 	int numberOfAIPlayers = AskForAIPlayersNumber();
 	m_players.reserve(numberOfPlayers);
@@ -21,14 +24,14 @@ void Game::GameSetup()
 		if (AIPlayers > 0)
 		{
 			std::string playerName = AskForPlayerName(i, true);
-			m_players[i] = Player(playerName);
+			m_players[i] = Player(playerName, m_deck);
 			m_players[i].SetAI(true);
 			AIPlayers--;
 		}
 		else
 		{
 			std::string playerName = AskForPlayerName(i, false);
-			m_players[i] = Player(playerName);
+			m_players[i] = Player(playerName, m_deck);
 			m_players[i].SetAI(false);
 		}
 	}
@@ -37,14 +40,14 @@ void Game::GameSetup()
 	m_dealer->SetDealer(true);
 }
 
-void Game::Update()
+void Game::Run()
 {
-	if (m_state == menu)
+	while (m_state == menu)
 	{
 		//do menu stuff here
 	}
 
-	if (m_state == game)
+	while (m_state == game)
 	{
 		//set up game
 		GameSetup();
@@ -99,4 +102,4 @@ int Game::AskForAIPlayersNumber()
 //getters
 
 //setters
-Game::GameState Game::SetState(GameState newState) { m_state = newState; }
+void Game::SetState(GameState newState) { m_state = newState; }
